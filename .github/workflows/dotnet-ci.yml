@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build Template.API.Rest/Template.API.Rest.sln --no-restore
     - name: Run Dotnet Test
-      run: dotnet test Template.API.Unittests/Template.API.Unittests.csproj --no-restore --verbosity normal
+      run: dotnet test Template.API.Unittests/Library.API.Unittests.csproj --no-restore --verbosity normal

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Template.API.Core\Library.API.Core.csproj" />
+    <ProjectReference Include="..\Template.API.Infrastructure\Library.API.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
