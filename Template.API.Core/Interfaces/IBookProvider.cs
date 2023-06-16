@@ -11,5 +11,7 @@ namespace Template.API.Core.Interfaces
     {
         public Task<List<Book>> GetBooksByTitle(string author);
         public Task<List<Book>> GetAllBooks();
+        Task<List<Book>> GetBooksByAuthor(string author);
+        Task<List<Book>> GetBooksByGenre(Genre genre);
     }
 }
