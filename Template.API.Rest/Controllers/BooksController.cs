@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Template.API.Core.Interfaces;
+using Template.API.Core.Models;
 using Template.API.Infrastructure.Data;
 
 namespace Template.API.Rest.Controllers
@@ -32,6 +33,27 @@ namespace Template.API.Rest.Controllers
         {
             _logger.LogInformation("GetAllBooks");
             var books = await _bookProvider.GetAllBooks();
+            return Ok(books);
+        }
+
+        [HttpGet("Author")]
+        public async Task<IActionResult> GetBooksByAuthor(string author)
+        {
+            if (string.IsNullOrWhiteSpace(author))
+            {
+                throw new ArgumentException($"'{nameof(author)}' cannot be null or whitespace.", nameof(author));
+            }
+            _logger.LogInformation("GetBooksByAuthor");
+            var books = await _bookProvider.GetBooksByAuthor(author);
+            return Ok(books);
+        }
+
+        [HttpGet("Genre")]
+        public async Task<IActionResult> GetBooksByGenre(Genre genre)
+        {
+            
+            _logger.LogInformation("GetBooksByGenre");
+            var books = await _bookProvider.GetBooksByGenre(genre);
             return Ok(books);
         }
 

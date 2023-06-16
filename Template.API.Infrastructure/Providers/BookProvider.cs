@@ -45,5 +45,17 @@ namespace Template.API.Infrastructure.Providers
             var books = await _context.Books.ToListAsync();
             return books;
         }
+
+        public Task<List<Book>> GetBooksByAuthor(string author)
+        {
+            var books = _context.Books.Where(x => x.Author.ToLower().StartsWith(author.ToLower())).ToListAsync();
+            return books;
+        }
+
+        public Task<List<Book>> GetBooksByGenre(Genre genre)
+        {
+            var books = _context.Books.Where(x => x.Genre == genre).ToListAsync();
+            return books;
+        }
     }
 }
