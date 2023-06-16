@@ -32,8 +32,6 @@ namespace Template.API.Unittests
                 ISBN= 123456789
             } });
 
-
-
             //// Act
             var result = _sut.GetBooksByTitle("Title");
 
@@ -48,7 +46,7 @@ namespace Template.API.Unittests
             resultObj[0].PageAmount.Should().Be(100);
             resultObj[0].ISBN.Should().Be(123456789);
             resultObj.Count.Should().Be(1);
-            
+
         }
 
 
@@ -88,6 +86,62 @@ namespace Template.API.Unittests
             resultObj[1].PageAmount.Should().Be(1000);
             resultObj[1].ISBN.Should().Be(1234567890);
         }
+
+        [Fact]
+        public void GetBooksByAuthor_ReturnsOkResult()
+        {
+            _bookProviderMock.Setup(x => x.GetBooksByAuthor(It.IsAny<string>())).ReturnsAsync(new List<Book>() { new Book
+            {
+                Title= "Test",
+                Author= "Test",
+                Genre= Genre.Fantasy,
+                Language= "English",
+                PageAmount= 100,
+                ISBN= 123456789
+            } });
+
+            //// Act
+            var result = _sut.GetBooksByAuthor("Author");
+            var resultObj = (result.Result as OkObjectResult).Value as List<Book>;
+
+            //// Assert
+            resultObj.Should().BeOfType<List<Book>>();
+            resultObj[0].Title.Should().Be("Test");
+            resultObj[0].Author.Should().Be("Test");
+            resultObj[0].Genre.Should().Be(Genre.Fantasy);
+            resultObj[0].Language.Should().Be("English");
+            resultObj[0].PageAmount.Should().Be(100);
+            resultObj[0].ISBN.Should().Be(123456789);
+            resultObj.Count.Should().Be(1);
+        }
+
+        [Fact]
+        public void GetBooksByGenre_ReturnsOkResult()
+        {
+            _bookProviderMock.Setup(x => x.GetBooksByGenre(It.IsAny<Genre>())).ReturnsAsync(new List<Book>() { new Book
+            {
+                Title= "Test",
+                Author= "Test",
+                Genre= Genre.Fantasy,
+                Language= "English",
+                PageAmount= 100,
+                ISBN= 123456789
+            } });
+            // Act
+            var result = _sut.GetBooksByGenre(Genre.Fantasy);
+            var resultObj = (result.Result as OkObjectResult).Value as List<Book>;
+
+            //// Assert
+            resultObj.Should().BeOfType<List<Book>>();
+            resultObj[0].Title.Should().Be("Test");
+            resultObj[0].Author.Should().Be("Test");
+            resultObj[0].Genre.Should().Be(Genre.Fantasy);
+            resultObj[0].Language.Should().Be("English");
+            resultObj[0].PageAmount.Should().Be(100);
+            resultObj[0].ISBN.Should().Be(123456789);
+            resultObj.Count.Should().Be(1);
+        }
     }
 }
-    
+
+
